@@ -1,0 +1,259 @@
+cogido=new Array();
+function codigo(){
+    noseguir=false
+    valid=document.getElementById("curp").value;
+    if(valid== ""|| valid.length<18){
+        alert("ERROR... faltan digitos de la CURP!!!");
+    }else{
+        for(i=0;i<=cogido.length;i++){
+            if(document.getElementById("curp").value==cogido[i]){
+                alert("Ya votaste");
+                noseguir=true;
+            }
+        }if(noseguir==false){
+            curp= document.getElementById("curp").value.toLowerCase();
+            code= agg(String(Math.floor(letra(curp.charAt(0))/letra(curp.charAt(2))+3))) + agg(String(Math.floor(letra(curp.charAt(1))/2+letra(curp.charAt(0))))) + agg(String(Math.floor(letra(curp.charAt(2))+7/letra(curp.charAt(3))))) + agg(String(Math.floor(letra(curp.charAt(3))+8-letra(curp.charAt(16))/10)));
+            code= code+ agg(String(Math.floor(letra(curp.charAt(6))/letra(curp.charAt(0))+3))) + agg(String(Math.floor(letra(curp.charAt(10))/2+letra(curp.charAt(8))))) + agg(String(Math.floor(letra(curp.charAt(1))+7/letra(curp.charAt(5))))) + agg(String(Math.floor(letra(curp.charAt(1))+8-letra(curp.charAt(2))/8)));
+            code= code+ agg(String(Math.floor(letra(curp.charAt(7))/letra(curp.charAt(3))+3))) + agg(String(Math.floor(letra(curp.charAt(5))/2+letra(curp.charAt(0)))));
+            code=code+String(estado(curp));
+            modulo = "0984";
+            casilla = "0002561";
+            code=code+modulo+casilla;
+            document.getElementById("code").value = code;
+            novotar=false;
+        }
+    }}
+
+function agg(nums){
+    if(nums.length==1){
+        nums="0"+nums;
+    }
+    return nums;
+}
+
+function imget(){
+    radio2 = document.getElementById("etor");
+    radio2.checked= true;
+}
+function imgan(){
+    radio1 = document.getElementById("angel");
+    radio1.checked= true;
+}
+function imgja(){
+    radio3 = document.getElementById("javi");
+    radio3.checked= true;
+}
+
+function votar(){
+    radio1 = document.getElementById("angel");
+    radio2 = document.getElementById("etor");
+    radio3 = document.getElementById("javi");
+    if(novotar==false){
+    if (radio1.checked){
+        document.getElementById("votosang").value = parseInt(document.getElementById("votosang").value) +1;
+        novotar=true;
+    }else if (radio2.checked){
+        document.getElementById("votoseto").value = parseInt(document.getElementById("votoseto").value) +1;
+       novotar=true;
+    }else if (radio3.checked){
+        novotar=true;
+        document.getElementById("votosjav").value = parseInt(document.getElementById("votosjav").value) +1;
+    }else{
+        alert ("No has seleccionado alguno");
+    }
+    
+
+    cogido=[document.getElementById("curp").value];
+
+}else{
+    alert("Ya votaste");
+}}
+
+
+
+
+function estado(curp){
+    est=String(curp.charAt(11))+String(curp.charAt(12));
+    switch (est){
+        case "as":
+            return 01;
+        case "bs":
+            return 02;
+        case "cl":
+            return 03;
+        case "cs":
+            return 04;
+        case "df":
+            return 05;
+        case "gt":
+            return 06;
+        case "hg":
+            return 07;
+        case "mc":
+            return 08;
+        case "ms":
+            return 09;
+        case "nl":
+            return 10;
+        case "pl":
+            return 11;
+        case "qr":
+            return 12;
+        case "sl":
+            return 13;
+        case "tc":
+            return 14;
+        case "tl":
+            return 15;
+        case "yn":
+            return 16;
+        case "ne":
+            return 17;
+        case "bc":
+            return 18;
+        case "cc":
+            return 19;
+        case "cm":
+            return 20;
+        case "ch":
+            return 21;
+        case "dg":
+            return 22;
+        case "gr":
+            return 23;
+        case "jc":
+            return 24;
+        case "mn":
+            return 25;
+        case "nt":
+            return 26;
+        case "oc":
+            return 27;
+        case "qt":
+            return 28;
+        case "sp":
+            return 29;
+        case "sr":
+            return 30;
+        case "ts":
+            return 31;
+        case "vz":
+            return 32;
+        case "zs":
+            return 33;
+    }
+}
+function letra(a){
+    switch(a){
+        case 'a':
+            return 20;
+        case 'b':
+            return 34;
+        case 'c':
+            return 18;
+        case 'd':
+            return 44;
+        case 'e':
+            return 22;
+        case 'f':
+            return 36;
+        case 'g':
+            return 28;
+        case 'h':
+            return 16;
+        case 'i':
+            return 10;
+        case 'j':
+            return 38;
+        case 'k':
+            return 40;
+        case 'l':
+            return 44;
+        case 'm':
+            return 42;
+        case 'n':
+            return 14;
+        case 'ñ':
+            return 26;
+        case 'o':
+            return 30;
+        case 'p':
+            return 08;
+        case 'q':
+            return 02;
+        case 'r':
+            return 46;
+        case 's':
+            return 12;
+        case 't':
+            return 66;
+        case 'u':
+            return 56;
+        case 'v':
+            return 50;
+        case 'w':
+            return 04;
+        case 'x':
+            return 58;
+        case 'y':
+            return 68;
+        case 'z':
+            return 06;
+        default:
+            return a*3;
+}}
+
+
+//codigo pagina//
+
+
+<html>
+    <head>
+        <script src="proyecto.js"></script>
+        <title>prueba</title></head>
+    <body>
+        <style>
+            body {
+                background:center;
+                background-image: url(fondo.jpg);
+            }
+            button{
+                background-color:rgb(50, 189, 50);
+                width: 200;
+                height: 30;
+            }
+            input{
+                width: 255;
+
+            }
+            table, th, td {
+  border: 10px solid rgb(255, 255, 255);
+  border-collapse: collapse;
+  background-color: rgb(156, 14, 14);
+}
+        </style>
+        <center style="background-color:rgb(37, 122, 16)"><img src="logo-ine.png"><br>Aqui introduce tu CURP:<br><input type="text" id="curp"><br><br>
+        <button onclick="codigo()">Imprimir codigo</button><br>
+        Tu usuario es:<br><input type="text" readonly id="code">
+        </center>
+        <center><table>
+            <tr>
+                <td><input type="radio" id="angel" name="votos" value="Ángel">
+                    <label for="Ángel"><center><font color="green" size="10">Ángel</font></label><br><img src="angel.jpeg" height="250" onclick="imgan()"></center> </td>
+                <td><input type="radio" id="etor" name="votos" value="Etor">
+                    <label for="Etor"><center><font color="green" size="10">Etor</font></label><br><img src="etor.jpeg" height="250" onclick="imget()"></center></td>
+            </tr>
+            <tr>
+                <td colspan=2><center><input type="radio" id="javi" name="votos" value="Javi">
+                    <label for="Javi"><center><font color="green" size="10">Javi</font></label><br><img src="javi.jpeg" height="250" onclick="imgja()"></center></td>
+            </tr>
+        </table></center> 
+        <br>
+        <center>
+        <button onclick="votar()">Vota por tu favorito</button><br>
+        <p>Votos de Ángel</p> <input type="number" readonly id="votosang" value="0"><br>
+        <p>Votos de Etor</p><input type="number" readonly id="votoseto" value="0">
+        <p>Votos de Javi</p><input type="number" readonly id="votosjav" value="0"></form></center>
+    </body>
+</html>
+
